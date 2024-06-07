@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fornecedor extends Model
 {
-    use SoftDeletes;
 
+    use SoftDeletes;
     protected $table = 'fornecedores';
     protected $fillable = ['nome', 'site', 'uf', 'email'];
     use HasFactory;
