@@ -19,7 +19,5 @@
             </div>
         </div>
     </div>
-
-    {{print_r($motivo_contatos)}}
     @include('site.layouts._partials._footer')
 @endsection
