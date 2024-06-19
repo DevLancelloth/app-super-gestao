@@ -7,16 +7,16 @@
     <br>
     <input name="email" value='{{old('email')}}' type="text" placeholder="E-mail" class="{{ $classe }}">
     <br>
+
+    {{print_r($motivo_contatos)}}
     <select name="motivo_contato" class="{{ $classe }}">
-        <option value="1">Qual o motivo do contato?</option>
-        <option value="2">Dúvida</option>
-        <option value="3">Elogio</option>
-        <option value="4">Reclamação</option>
+        <option value="1">Qual o motivo do contato</option>
+        <option value="2"{{old('motivo_contatos') == 1 ? 'selected' : '' }}>Dúvida</option>
+        <option value="3"{{old('motivo_contatos') == 2 ? 'selected' : '' }}>Elogio</option>
+        <option value="4"{{old('motivo_contatos') == 3 ? 'selected' : '' }}>Reclamação</option>
     </select>
     <br>
-    <textarea name="mensagem" value='{{old('mensagem')}}' class="{{ $classe }}">
-        {{(old('mensagem') != '' ? old('mensagem') : 'Preencha sua mensagem')}}
-    </textarea>
+    <textarea name="mensagem" value='{{old('mensagem')}}' class="{{ $classe }}">{{(old('mensagem') != '' ? old('mensagem') : 'Preencha sua mensagem')}}</textarea>
     <br>
     <button type="submit" class="{{ $classe }}">ENVIAR</button>
 </form>
