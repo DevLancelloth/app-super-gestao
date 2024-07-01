@@ -1,21 +1,22 @@
 {{ $slot }}
-<form action={{ route('home.contato') }} method="POST">
+<form action="{{ route('home.contato') }}" method="POST">
     @csrf
     <input name="nome" value='{{ old('nome')}}' type="text" placeholder="Nome" class="{{ $classe }}">
     <br>
-    <input name="telefone" value='{{old('telefone')}}' type="text" placeholder="Telefone" class="{{ $classe }}">
+    <input name="telefone" value='{{ old('telefone')}}' type="text" placeholder="Telefone" class="{{ $classe }}">
     <br>
-    <input name="email" value='{{old('email')}}' type="text" placeholder="E-mail" class="{{ $classe }}">
+    <input name="email" value='{{ old('email')}}' type="text" placeholder="E-mail" class="{{ $classe }}">
     <br>
-    <select name="motivo_contato_id" class="{{ $classe }}">
-    <option value="">Qual o motivo do contato ?</option>
-    @foreach ($motivo_contatos as $key => $motivo_contato)
-        <option value="{{$motivo_contato->id}}" {{ old('motivo_contatos_id') == $motivo_contato->id ? 'selected' : '' }} > {{$motivo_contato->motivo_contato}} </option>
-    @endforeach
+    <select name="motivo_contatos_id" class="{{ $classe }}">
+        <option value="">Qual o motivo do contato?</option>
+        @foreach ($motivo_contatos as $motivo_contato)
+            <option value="{{ $motivo_contato->id }}" {{ old('motivo_contatos_id') == $motivo_contato->id ? 'selected' : '' }}>
+                {{ $motivo_contato->motivo_contato }}
+            </option>
+        @endforeach
     </select>
     <br>
-    <textarea name="mensagem" value='{{old('mensagem')}}' class="{{ $classe }}">{{(old('mensagem') != '' ? old('mensagem') : 'Preencha sua mensagem')}}</textarea>
+    <textarea name="mensagem" class="{{ $classe }}">{{ old('mensagem') ?: 'Preencha sua mensagem' }}</textarea>
     <br>
     <button type="submit" class="{{ $classe }}">ENVIAR</button>
 </form>
-

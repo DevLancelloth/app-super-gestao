@@ -19,9 +19,9 @@ return new class extends Migration
 
         DB::statement('update site_contatos set motivo_contatos_id = motivo_contato');
 
+        //criando a fk e removendo a coluna
         Schema::table('site_contatos', function (Blueprint $table) {
-            $table->dropColumn('motivo_contato');
-            $table->foreign('motivo_contatos_id')->references('id')->on('motivo_contatos');
+            $table->foreign('motivo_contatos_id')->references('id')->on('motivo_contatos');$table->dropColumn('motivo_contato');
         });
     }
 
@@ -30,17 +30,16 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //remover a fk e criar novamente a coluna motivo_contato
         Schema::table('site_contatos', function (Blueprint $table) {
-            $table->integer('motivo_contato');
-            $table->dropForeign('site_contatos_motivo_contatos_id_foreign');
+           $table->integer('motivo_contato');
+           $table->dropForeign('site_contatos_motivo_contatos_id_foreign');
         });
-        //atribuir motivo_contato_id a motivo_contato
-        DB::statement('update site_contatos set motivo_contato = motivo_contato_id');
 
-        //remover a coluna motivo_contato_id
+        DB::statement('update site_contatos set motivo_contatos_id = motivo_contato');
+
         Schema::table('site_contatos', function (Blueprint $table) {
-            $table->dropColumn('motivo_contato_id');
+            $table->dropColumn('motivo_contatos_id');
         });
+
     }
 };

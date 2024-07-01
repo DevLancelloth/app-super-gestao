@@ -8,24 +8,27 @@ use App\Models\MotivoContato;
 
 class ContatoController extends Controller
 {
-    public function contato(Request $request)
+    public function contato()
     {
         $motivo_contatos = MotivoContato::all();
-
         return view('site.contato', ['titulo' => 'Contato (teste)', 'motivo_contatos' => $motivo_contatos]);
     }
 
     public function salvar(Request $request)
     {
+        // Validando os dados recebidos do formulário
         $request->validate([
-            'nome' => 'required | min:3 | max:40',
+            'nome' => 'required|min:3|max:40|unique:site_contatos',
             'email' => 'email',
             'telefone' => 'required',
             'motivo_contatos_id' => 'required',
-            'mensagem' => 'required | max:2000'
+            'mensagem' => 'required|max:2000'
         ]);
 
-        SiteContato::create($request->all());
-        return redirect()->route('site.index');
+        // Criando o registro no banco de dados
+        $contato = SiteContato::create($request->all());
+
+        // Redirecionando após salvar
+        return redirect()->route('home.contato');
     }
 }
