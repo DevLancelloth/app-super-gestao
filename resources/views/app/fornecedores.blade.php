@@ -3,7 +3,6 @@
 
 
 @isset($fornecedores)
-
     @forelse($fornecedores as $indices => $fornecedor)
         Interação atual: {{ $loop->iteration }}
         <br>

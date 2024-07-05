@@ -16,19 +16,35 @@ class ContatoController extends Controller
 
     public function salvar(Request $request)
     {
-        // Validando os dados recebidos do formulário
-        $request->validate([
+
+        $valores = [
             'nome' => 'required|min:3|max:40|unique:site_contatos',
-            'email' => 'email',
+            'email' => 'required | email',
             'telefone' => 'required',
             'motivo_contatos_id' => 'required',
             'mensagem' => 'required|max:2000'
-        ]);
+        ];
 
-        // Criando o registro no banco de dados
+        $parametros = [
+            'nome.required' => 'O nome é obrigatório.',
+            'nome.min' => 'O nome deve ter no mínimo 3 caracteres.',
+            'nome.max' => 'O nome não pode ter mais de 40 caracteres.',
+            'nome.unique' => 'Este nome já foi cadastrado.',
+
+            'email.required' => 'O e-mail é obrigatório.',
+            'email.email' => 'O e-mail informado não é válido.',
+
+            'telefone.required' => 'O telefone é obrigatório.',
+
+            'motivo_contatos_id.required' => 'O motivo de contato é obrigatório.',
+
+           'mensagem.required' => 'A mensagem é obrigatória.',
+        ];
+
+
+        $request->validate($valores, $parametros);
+
         $contato = SiteContato::create($request->all());
-
-        // Redirecionando após salvar
         return redirect()->route('home.contato');
     }
 }

@@ -34,7 +34,7 @@ Route::prefix('/app')->group(function () {
     Route::get('/clientes', function () {
         return view('app.clientes');
     })->name('app.clientes');
-    Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('app.fornecedor');
+    Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('app.fornecedores');
 });
 
 /*
