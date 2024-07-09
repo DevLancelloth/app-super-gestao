@@ -17,13 +17,16 @@ use App\Http\Middleware\LogAcessoMiddleware;
 
 
 // Rotas do grupo "home"
-Route::prefix('/')->group(function () {
-    Route::middleware(LogAcessoMiddleware::class)
-    ->get('/', [PrincipalController::class, 'principal'])
+Route::prefix('/')
+->middleware(LogAcessoMiddleware::class)->group(function () {
+    Route::get('/', [PrincipalController::class, 'principal'])
     ->name('home.index');
-    Route::get('/contato', [ContatoController::class, 'contato'])->name('home.contato');
-    Route::post('/contato', [ContatoController::class, 'salvar'])->name('home.contato');
-    Route::get('/sobre-nos', [SobreNosController::class, 'sobrenos'])->name('home.sobrenos');
+    Route::get('/contato', [ContatoController::class, 'contato'])
+    ->name('home.contato');
+    Route::post('/contato', [ContatoController::class, 'salvar'])
+    ->name('home.contato');
+    Route::get('/sobre-nos', [SobreNosController::class, 'sobrenos'])
+    ->name('home.sobrenos');
     Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('home.teste');
     Route::get('/login', function () {
         return view('site.login');
