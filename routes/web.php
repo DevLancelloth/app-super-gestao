@@ -6,6 +6,8 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\TesteController;
+use App\Http\Middleware\LogAcessoMiddleware;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,9 @@ use App\Http\Controllers\TesteController;
 
 // Rotas do grupo "home"
 Route::prefix('/')->group(function () {
-    Route::get('/', [PrincipalController::class, 'principal'])->name('home.index');
+    Route::middleware(LogAcessoMiddleware::class)
+    ->get('/', [PrincipalController::class, 'principal'])
+    ->name('home.index');
     Route::get('/contato', [ContatoController::class, 'contato'])->name('home.contato');
     Route::post('/contato', [ContatoController::class, 'salvar'])->name('home.contato');
     Route::get('/sobre-nos', [SobreNosController::class, 'sobrenos'])->name('home.sobrenos');
@@ -46,3 +50,8 @@ Route::prefix('/app')->group(function () {
 Route::fallback(function () {
     echo 'Sinto muito, essa página ainda está em construção e estamos trabalhando o mais rápido possível para que esse conteúdo chegue até você!! Clique aqui para ser redirecionado a tela principal: <a href="' . route('home.index') . '">Retornar</a>';
 });
+
+
+Route::middleware(LogAcessoMiddleware::class)
+->get('/', [PrincipalController::class, 'principal'])
+->name('home.index');
