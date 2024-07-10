@@ -6,6 +6,7 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\TesteController;
+use App\Http\Middleware\AutenticacaoMiddleware;
 use App\Http\Middleware\LogAcessoMiddleware;
 
 
@@ -35,7 +36,9 @@ Route::prefix('/')
 });
 
 // Rotas do grupo "app"
-Route::prefix('/app')->group(function () {
+Route::prefix('/app')
+->middleware(LogAcessoMiddleware::class, AutenticacaoMiddleware::class)
+->group(function () {
     Route::get('/produtos', function () {
         return view('app.produtos');
     })->name('app.produtos');
