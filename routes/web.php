@@ -57,6 +57,4 @@ Route::fallback(function () {
 });
 
 
-Route::middleware(LogAcessoMiddleware::class)
-->get('/', [PrincipalController::class, 'principal'])
-->name('home.index');
+
