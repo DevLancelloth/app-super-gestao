@@ -18,7 +18,8 @@ use App\Http\Middleware\LogAcessoMiddleware;
 
 // Rotas do grupo "home"
 Route::prefix('/')
-->middleware(LogAcessoMiddleware::class)->group(function () {
+->middleware(LogAcessoMiddleware::class)
+->group(function () {
     Route::get('/', [PrincipalController::class, 'principal'])
     ->name('home.index');
     Route::get('/contato', [ContatoController::class, 'contato'])
