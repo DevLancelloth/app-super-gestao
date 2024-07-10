@@ -8,7 +8,7 @@ use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\TesteController;
 use App\Http\Middleware\AutenticacaoMiddleware;
 use App\Http\Middleware\LogAcessoMiddleware;
-
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +18,7 @@ use App\Http\Middleware\LogAcessoMiddleware;
 
 
 // Rotas do grupo "home"
-Route::prefix('/')
-->middleware(LogAcessoMiddleware::class)
+Route::prefix('/')->middleware(['log'])
 ->group(function () {
     Route::get('/', [PrincipalController::class, 'principal'])
     ->name('home.index');
@@ -36,8 +35,7 @@ Route::prefix('/')
 });
 
 // Rotas do grupo "app"
-Route::prefix('/app')
-->middleware(LogAcessoMiddleware::class, AutenticacaoMiddleware::class)
+Route::prefix('/app')->middleware(['app'])
 ->group(function () {
     Route::get('/produtos', function () {
         return view('app.produtos');
