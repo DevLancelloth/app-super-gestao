@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->appendToGroup('log', [
             LogAcessoMiddleware::class,
         ]);
-        $middleware->appendToGroup( 'app', [
+        $middleware->appendToGroup( 'autenticacao', [
             LogAcessoMiddleware::class,
             AutenticacaoMiddleware::class
         ]);

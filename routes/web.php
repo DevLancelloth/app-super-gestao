@@ -35,7 +35,7 @@ Route::prefix('/')->middleware(['log'])
 });
 
 // Rotas do grupo "app"
-Route::prefix('/app')->middleware(['app'])
+Route::prefix('/app')->middleware(['autenticacao'])
 ->group(function () {
     Route::get('/produtos', function () {
         return view('app.produtos');
