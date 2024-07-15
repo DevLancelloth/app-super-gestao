@@ -1,4 +1,4 @@
-<h3>Forncedor (View)</h3>
+<h3>Contribuinte (View)</h3>
 
 
 
@@ -6,24 +6,24 @@
     @forelse($fornecedores as $indices => $fornecedor)
         Interação atual: {{ $loop->iteration }}
         <br>
-        Fornecedor: {{ $fornecedor['nome'] }}
+        Contribuinte: {{ $fornecedor->nome }}
         <br>
-        Status: {{ $fornecedor['status'] }}
+        Status: {{ $fornecedor->email }}
         <br>
-        CNPJ: {{ $fornecedor['cnpj'] }}
+        Email: {{ $fornecedor->site }}
         <br>
-        Telefone: ({{ $fornecedor['ddd'] }}) {{ $fornecedor['telefone'] }}
+        UF: {{ $fornecedor->uf }}
         @if ($loop->first)
             Primeiro fornecedor cadastrado
         @endif
         @if ($loop->last)
             Ultimo fornecedor cadastrado
             <br>
+            <hr>
             Total de registros: {{ $loop->count }}
         @endif
-
         <hr>
     @empty
-        Não existem fornecedores cadastrados!!
+        Não existem contribuintes cadastrados!!
     @endforelse
 @endisset
