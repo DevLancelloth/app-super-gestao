@@ -11,12 +11,10 @@ class LogAcessoMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        // $request - manipular
-        // return $next($request);
-        // $response - manipular e retornar
-
+        // Para salvar log de acesso na base de dados
         $ip = $request->server->get('REMOTE_ADDR');
         $rota = $request->getRequestUri();
+        ///////////////////////////////////////////////////////////////
         LogAcesso::create(['log'=> "$ip requisitou a rota: $rota"]);
         return $next($request);
         return response('Chegamos no middleware e finalizamos no mesmo');
