@@ -38,7 +38,7 @@ class ContatoController extends Controller
 
             'motivo_contatos_id.required' => 'O motivo de contato é obrigatório.',
 
-           'mensagem.required' => 'A mensagem é obrigatória.',
+            'mensagem.required' => 'A mensagem é obrigatória.',
         ];
 
 
