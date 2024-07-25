@@ -14,9 +14,12 @@ class LogAcessoMiddleware
         // Para salvar log de acesso na base de dados
         $ip = $request->server->get('REMOTE_ADDR');
         $rota = $request->getRequestUri();
+        LogAcesso::create(['log' => "$ip requisitou a rota: $rota"]);
         ///////////////////////////////////////////////////////////////
-        LogAcesso::create(['log'=> "$ip requisitou a rota: $rota"]);
-        return $next($request);
-        return response('Chegamos no middleware e finalizamos no mesmo');
+
+        // Definida a variável para armazenar as respostas e os StatusCode via método http
+        $resposta = $next($request);
+        $resposta->setStatusCode(201, 'Requisição realizada com sucesso!');
+        return $resposta;
     }
 }

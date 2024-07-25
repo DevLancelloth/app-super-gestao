@@ -6,6 +6,7 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\TesteController;
+use App\Http\Controllers\LoginController;
 use App\Http\Middleware\AutenticacaoMiddleware;
 use App\Http\Middleware\LogAcessoMiddleware;
 use GuzzleHttp\Middleware;
@@ -30,9 +31,10 @@ Route::prefix('/')->middleware(['log'])
             ->name('home.sobrenos');
         Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])
             ->name('home.teste');
-        Route::get('/login', function () {
-            return view('site.login');
-        })->name('home.login');
+        Route::get('/login', [LoginController::class, 'index'])
+            ->name('home.login');
+        Route::post('/login', [LoginController::class, 'autenticar'])
+            ->name('home.login');
     });
 
 // Rotas do grupo "app"

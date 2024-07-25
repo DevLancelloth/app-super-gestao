@@ -10,9 +10,12 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                  {{-- Movido para antes do componente --}}
+                {{-- Movido para antes do componente --}}
 
-                @component('site.layouts._components.form_contato', ['classe' => 'borda-preta', 'motivo_contatos' => $motivo_contatos])
+                @component('site.layouts._components.form_contato', [
+                    'classe' => 'borda-preta',
+                    'motivo_contatos' => $motivo_contatos,
+                ])
                     <p>Restornaremos o mais brevemente possível! </p>
                     <p>Tempo médio de resposta: 48 horas.</p>
                 @endcomponent
