@@ -14,6 +14,7 @@ class LogAcessoMiddleware
         // Para salvar log de acesso na base de dados
         $ip = $request->server->get('REMOTE_ADDR');
         $rota = $request->getRequestUri();
+        LogAcesso::create(['log' => "$ip requisitou a rota: $rota"]);
         ///////////////////////////////////////////////////////////////
         LogAcesso::create(['log'=> "$ip requisitou a rota: $rota"]);
 
