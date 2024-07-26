@@ -50,8 +50,5 @@ class LoginController extends Controller
         } else {
             echo "Usuário ou senha inválidos!";
         }
-        echo "<pre>";
-        print_r($usuario);
-        echo "</pre>";
     }
 }
