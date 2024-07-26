@@ -16,10 +16,12 @@ class LogAcessoMiddleware
         $rota = $request->getRequestUri();
         LogAcesso::create(['log' => "$ip requisitou a rota: $rota"]);
         ///////////////////////////////////////////////////////////////
+        LogAcesso::create(['log'=> "$ip requisitou a rota: $rota"]);
 
-        // Definida a variável para armazenar as respostas e os StatusCode via método http
+        // return $next($request);
+
         $resposta = $next($request);
-        $resposta->setStatusCode(201, 'Requisição realizada com sucesso!');
+        $resposta->setStatusCode(201, 'Acesso logado com sucesso!');  // Altera o status code para 20);
         return $resposta;
     }
 }
