@@ -1,6 +1,8 @@
 @extends('site.layouts.base')
 @section('title', $titulo)
 
+
+
 @section('conteudo')
     @include('site.layouts._partials._menu')
     <div class="conteudo-pagina">
@@ -19,6 +21,7 @@
                     {{ $errors->has('senha') ? $errors->first('senha') : '' }}
                     <button type="submit" class="borda-preta">Acessar</button>
                 </form>
+                {{ isset($erro) && $erro != '' ? $erro : '' }}
             </div>
         </div>
     </div>

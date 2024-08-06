@@ -7,9 +7,13 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('site.login', ['titulo' => 'Login']);
+        $erro = '';
+        if ($request->get('erro') == '1') {
+            $erro = 'Usuário ou senha inválidos!';
+        }
+        return view('site.login', ['titulo' => 'Login', 'erro' => $erro]);
     }
 
     public function autenticar(Request $request)
@@ -48,7 +52,7 @@ class LoginController extends Controller
         if (isset($usuario)) {
             echo "Login efetuado com sucesso!";
         } else {
-            echo "Usuário ou senha inválidos!";
+            return redirect()->route('home.login', ['erro' => 1]);
         }
     }
 }

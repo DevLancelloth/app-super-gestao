@@ -31,7 +31,7 @@ Route::prefix('/')->middleware(['log'])
             ->name('home.sobrenos');
         Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])
             ->name('home.teste');
-        Route::get('/login', [LoginController::class, 'index'])
+        Route::get('/login/{erro?}', [LoginController::class, 'index'])
             ->name('home.login');
         Route::post('/login', [LoginController::class, 'autenticar'])
             ->name('home.login');
